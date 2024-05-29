@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum de Bodas</title>
+    <style>
+        body {
+            font-family: 'Arial, sans-serif';
+            background-color: #fff5e6;
+            color: #5c4033;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .album {
+            width: 80%;
+            max-width: 900px;
+            margin: auto;
+            border: 5px solid #ffd1b3;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .page {
+            width: 100%;
+            height: 600px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        /* Removido el max-width de .page img */
+        .page img {
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .page p {
+            font-size: 1.2em;
+            color: #8b4513;
+            text-align: center;
+            max-width: 80%;
+        }
+        .page.active {
+            display: flex;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .controls button {
+            background-color: #ffd1b3;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            color: #8b4513;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .controls button:hover {
+            background-color: #ffb999;
+        }
+    </style>
+</head>
+<body>
+    <div class="album">
+        <div class="page active">
+            <img src="eve1.jpg" alt="Foto de Boda 1" style="width: 30%;"> <!-- Tamaño personalizado -->
+            <p>"El amor verdadero no tiene final feliz, porque el amor verdadero nunca termina."</p>
+        </div>
+        <div class="page">
+            <img src="eve2.jpg" alt="Foto de Boda 2" style="width: 40%;"> <!-- Tamaño personalizado -->
+            <p>"Eres mi hoy y todos mis mañanas."</p>
+        </div>
+        <div class="page">
+            <img src="eve3.jpg" alt="Foto de Boda 3" style="width: 40%;"> <!-- Tamaño personalizado -->
+            <p>"Cada historia de amor es hermosa, pero la nuestra es mi favorita."</p>
+        </div>
+        <div class="page">
+            <img src="eve4.jpg" alt="Foto de Boda 4" style="width: 30%;"> <!-- Tamaño personalizado -->
+            <p>"Contigo, todo es mejor."</p>
+        </div>
+        <div class="page">
+            <img src="eve5.jpg" alt="Foto de Boda 5" style="width: 25%;"> <!-- Tamaño personalizado -->
+            <p>"Eres la razón por la que creo en el amor verdadero."</p>
+        </div>
+        <div class="page">
+            <img src="eve6.jpg" alt="Foto de Boda 6" style="width: 30%;"> <!-- Tamaño personalizado -->
+            <p>"Te amo no solo por lo que eres, sino por lo que soy cuando estoy contigo."</p>
+        </div>
+        <div class="controls">
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pages = document.querySelectorAll('.page');
+            let currentPage = 0;
+
+            document.getElementById('next').addEventListener('click', function() {
+                pages[currentPage].classList.remove('active');
+                currentPage = (currentPage + 1) % pages.length;
+                pages[currentPage].classList.add('active');
+            });
+
+            document.getElementById('prev').addEventListener('click', function() {
+                pages[currentPage].classList.remove('active');
+                currentPage = (currentPage - 1 + pages.length) % pages.length;
+                pages[currentPage].classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
